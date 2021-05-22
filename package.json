@@ -1,0 +1,34 @@
+{
+  "name": "fcm-rest-api",
+  "version": "1.0.1",
+  "description": "FCM REST API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "node index.js",
+    "run": "node index.js",
+    "clean": "rm -rf ./node_modules",
+    "lint": "eslint .",
+    "posttest": "npm run lint && npm audit"
+  },
+  "keywords": [
+    "FCM",
+    "REST",
+    "API",
+    "PUSH",
+    "MESSAGING",
+    "TOPIC MESSAGING",
+    "TOPIC SUBSCRIBE",
+    "TOPIC UNSUBSCRIBE",
+    "SERVICE_KEY",
+    "NODEJS"
+  ],
+  "author": "AJAY SINGH RAJPUT",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.27.0"
+  },
+  "dependencies": {
+    "node-fetch": "^3.0.0-beta.9"
+  }
+}
