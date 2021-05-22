@@ -69,7 +69,7 @@ There are 3 APIs for FCM Push Functionality:
 		key2: 'value2' 
 	};
     
-    fcm.sendPushToTopic(serverKey, topic, notificationObj, payloadObj)
+    fcm.sendPushToTopic(serverKey, topic, notificationObj, additionalObj)
 	.then(json => {
 		resolve(json);
 	})
