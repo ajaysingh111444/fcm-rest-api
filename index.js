@@ -188,84 +188,80 @@ class HelperFCM {
     static sendFCMPush(credentials, pushMethod, notificationObj, payloadObj, platform) {
         return new Promise((resolve, reject) => {
             try{
-                try{
-                    let message = {
-                        //data: payloadObj
+                let message = {
+                    //data: payloadObj
+                };
+                let apiUrl = "https://fcm.googleapis.com/fcm/send";
+                
+                if(pushMethod =="topic"){
+                    message.to = credentials.topic;
+                    message.notification = {
+                        title: notificationObj.title,
+                        body: notificationObj.body
                     };
-                    let apiUrl = "https://fcm.googleapis.com/fcm/send";
-                    
-                    if(pushMethod =="topic"){
-                        message.to = credentials.topic;
+                    if(notificationObj.click_action){
+                        message.notification.click_action = notificationObj.click_action;
+                    }
+                }
+                if(pushMethod =="token"){
+                    message.registration_ids = credentials.tokens;
+                    platform = platform.toLowerCase();
+                    if(platform && platform =='web'){
                         message.notification = {
                             title: notificationObj.title,
                             body: notificationObj.body
                         };
+                        message.data = payloadObj;
                         if(notificationObj.click_action){
                             message.notification.click_action = notificationObj.click_action;
                         }
-                    }
-                    if(pushMethod =="token"){
-                        message.registration_ids = credentials.tokens;
-                        platform = platform.toLowerCase();
+                    }else{
+                        message.data = {
+                            body: notificationObj.body,
+                            title: notificationObj.title,
+                            dataObj: payloadObj,
+                        };
+                        if(payloadObj.type){
+                            message.data.type = payloadObj.type;
+                        }
+                        if(notificationObj.membershipid){
+                            message.data.membershipid = notificationObj.membershipid;
+                        }
+                        if (notificationObj && notificationObj.badge) {
+                            message.data.badge = notificationObj.badge;
+                        }
                         if(platform && platform =='web'){
+                            if(notificationObj.click_action){
+                                message.data.click_action = notificationObj.click_action;
+                            }
+                        }
+                        if(platform && platform =='ios'){
                             message.notification = {
                                 title: notificationObj.title,
                                 body: notificationObj.body
                             };
-                            message.data = payloadObj;
-                            if(notificationObj.click_action){
-                                message.notification.click_action = notificationObj.click_action;
-                            }
-                        }else{
-                            message.data = {
-                                body: notificationObj.body,
-                                title: notificationObj.title,
-                                dataObj: payloadObj,
-                            };
-                            if(payloadObj.type){
-                                message.data.type = payloadObj.type;
-                            }
-                            if(notificationObj.membershipid){
-                                message.data.membershipid = notificationObj.membershipid;
-                            }
                             if (notificationObj && notificationObj.badge) {
-                                message.data.badge = notificationObj.badge;
-                            }
-                            if(platform && platform =='web'){
-                                if(notificationObj.click_action){
-                                    message.data.click_action = notificationObj.click_action;
-                                }
-                            }
-                            if(platform && platform =='ios'){
-                                message.notification = {
-                                    title: notificationObj.title,
-                                    body: notificationObj.body
-                                };
-                                if (notificationObj && notificationObj.badge) {
-                                    message.notification.badge = notificationObj.badge;
-                                }
+                                message.notification.badge = notificationObj.badge;
                             }
                         }
                     }
-                    let options = {
-                        method: "POST",
-                        headers: {
-                            Authorization: "key=" + credentials.serverKey,
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(message),
-                    };
-                    fetch(apiUrl, options)
-                        .then(res => res.json())
-                        .then(json => {
-                            resolve(json);
-                        })
-                        .catch((err) => {
-                            reject(err);
-                        });
-                }catch(err){
-                    reject(err);
                 }
+                let options = {
+                    method: "POST",
+                    headers: {
+                        Authorization: "key=" + credentials.serverKey,
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(message),
+                };
+                fetch(apiUrl, options)
+                    .then(res => res.json())
+                    .then(json => {
+                        resolve(json);
+                    })
+                    .catch((err) => {
+                        reject(err);
+                    });
             }catch(err){
                 reject(err);
             }
