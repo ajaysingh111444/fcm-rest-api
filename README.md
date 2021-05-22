@@ -118,4 +118,5 @@ There are 3 APIs for FCM Push Functionality:
 
 #### UPDATES
 	1-> Version 1.0.0 -> Initial Setup
-	1-> Version 1.0.1 -> Web Push Click Action issue fixed
+	2-> Version 1.0.1 -> Web Push Click Action issue fixed
+	3-> Version 1.0.2 -> Git repo added
