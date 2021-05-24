@@ -1,6 +1,6 @@
 {
   "name": "fcm-rest-api",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "FCM REST API",
   "main": "index.js",
   "scripts": {

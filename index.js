@@ -62,11 +62,11 @@ class HelperFCM {
                 }else{
                     error = {message:"Add Valid Notification Title!"};
                 }
-                if(notificationObj.body){
+                /*if(notificationObj.body){
                     //VALID body
                 }else{
                     error = {message:"Add Valid Notification Body!"};
-                }
+                }*/
             }
             if(pushMethod == 'topic'){
                 if(to.startsWith("/topics/")){
@@ -192,7 +192,10 @@ class HelperFCM {
                     //data: payloadObj
                 };
                 let apiUrl = "https://fcm.googleapis.com/fcm/send";
-                
+
+                notificationObj.title = notificationObj.title ? notificationObj.title : 'Testing FCM Push Notificatiion';
+                notificationObj.body = notificationObj.body ? notificationObj.body : '';
+
                 if(pushMethod =="topic"){
                     message.to = credentials.topic;
                     message.notification = {
@@ -201,6 +204,9 @@ class HelperFCM {
                     };
                     if(notificationObj.click_action){
                         message.notification.click_action = notificationObj.click_action;
+                    }
+                    if(notificationObj.image){
+                        message.notification.image = notificationObj.image;
                     }
                 }
                 if(pushMethod =="token"){
@@ -214,6 +220,9 @@ class HelperFCM {
                         message.data = payloadObj;
                         if(notificationObj.click_action){
                             message.notification.click_action = notificationObj.click_action;
+                        }
+                        if(notificationObj.image){
+                            message.notification.image = notificationObj.image;
                         }
                     }else{
                         message.data = {
@@ -230,6 +239,9 @@ class HelperFCM {
                         if (notificationObj && notificationObj.badge) {
                             message.data.badge = notificationObj.badge;
                         }
+                        if(notificationObj.image){
+                            message.data.image = notificationObj.image;
+                        }
                         if(platform && platform =='web'){
                             if(notificationObj.click_action){
                                 message.data.click_action = notificationObj.click_action;
@@ -242,6 +254,9 @@ class HelperFCM {
                             };
                             if (notificationObj && notificationObj.badge) {
                                 message.notification.badge = notificationObj.badge;
+                            }
+                            if(notificationObj.image){
+                                message.notification.image = notificationObj.image;
                             }
                         }
                     }
