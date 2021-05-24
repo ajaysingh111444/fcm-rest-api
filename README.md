@@ -19,11 +19,16 @@ There are 3 APIs for FCM Push Functionality:
    2. UnSubscribe Topic To Stop FCM Push
    
 
-#### SEND PUSH MESSAGE TO ANDROID/IOS/WEB
+#### CONFIGURATIONS
 ```js
     const fcm = require('fcm-rest-api')
     
     var serverKey = require('path/to/privatekey.json') //put the generated private key path here  
+	
+```
+
+#### SEND PUSH MESSAGE TO ANDROID/IOS/WEB
+```js
 	
 	var platfrom = 'android/ios/web';//VALID PLATFORMS
 	
@@ -31,6 +36,7 @@ There are 3 APIs for FCM Push Functionality:
 		title: 'Title of your push notification', 
 		body: 'Body of your push notification', 
 		click_action: 'Click Action Url', 
+		image: 'Image Url', 
 		badge: 'Badge Count'
 	};
 	
@@ -51,9 +57,6 @@ There are 3 APIs for FCM Push Functionality:
 
 #### SEND PUSH MESSAGE TO TOPIC
 ```js
-    const fcm = require('fcm-rest-api')
-    
-    var serverKey = require('path/to/privatekey.json') //put the generated private key path here    
 	
 	var topic = "topic_name_here";
 	
@@ -61,6 +64,7 @@ There are 3 APIs for FCM Push Functionality:
 		title: 'Title of your push notification', 
 		body: 'Body of your push notification', 
 		click_action: 'Click Action Url', 
+		image: 'Image Url',  
 		badge: 'Badge Count'
 	};
 	
@@ -82,10 +86,7 @@ There are 3 APIs for FCM Push Functionality:
 
 #### SUBSCRIBE TO TOPIC
 ```js
-    const fcm = require('fcm-rest-api')
-    
-    var serverKey = require('path/to/privatekey.json') //put the generated private key path here    
-	
+   
 	var topic = "topic_name_here";
     
     fcm.subscribeToTopic(serverKey, tokens, topic)
@@ -101,9 +102,6 @@ There are 3 APIs for FCM Push Functionality:
 
 #### UNSUBSCRIBE FROM TOPIC
 ```js
-    const fcm = require('fcm-rest-api')
-    
-    var serverKey = require('path/to/privatekey.json') //put the generated private key path here    
 	
 	var topic = "topic_name_here";
     
@@ -119,4 +117,5 @@ There are 3 APIs for FCM Push Functionality:
 #### UPDATES
 	1-> Version 1.0.0 -> Initial Setup
 	2-> Version 1.0.1 -> Web Push Click Action issue fixed
-	3-> Version 1.0.2 -> Git repo added
+	3-> Version 1.0.3 -> Minor code formatting issue fixed
+	4-> Version 1.0.4 -> Send Image in Push Notification 
