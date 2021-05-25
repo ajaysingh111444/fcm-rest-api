@@ -197,6 +197,7 @@ class HelperFCM {
                 notificationObj.body = notificationObj.body ? notificationObj.body : '';
 
                 if(pushMethod =="topic"){
+                    message.data = payloadObj;
                     message.to = credentials.topic;
                     message.notification = {
                         title: notificationObj.title,

@@ -116,6 +116,8 @@ There are 3 APIs for FCM Push Functionality:
 
 #### UPDATES
 	1-> Version 1.0.0 -> Initial Setup
-	2-> Version 1.0.1 -> Web Push Click Action issue fixed
-	3-> Version 1.0.3 -> Minor code formatting issue fixed
+	2-> Version 1.0.1 -> Web Push Click Action Issue Fixed
+	3-> Version 1.0.3 -> Minor code formatting Issue Fixed
 	4-> Version 1.0.4 -> Send Image in Push Notification 
+	5-> Version 1.0.5 -> Send Image in Push Notification 
+	6-> Version 1.0.6 -> Send Data To Topic Push Notification Issue Fixed
